@@ -40,7 +40,7 @@ do
 
     if [ `uname` != "Darwin" ]
     then
-        ZIPFILES=`ls ${tempFolder}/*.zip`
+        ZIPFILES=(`ls ${tempFolder}/*.zip`)
         echo ZIPFILES: ${ZIPFILES}
 
         for tempzip in "${ZIPFILES[@]}"
