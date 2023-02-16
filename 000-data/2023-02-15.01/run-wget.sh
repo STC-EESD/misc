@@ -41,20 +41,12 @@ do
     if [ `uname` != "Darwin" ]
     then
         ZIPFILES=(`ls ${tempFolder}/*.zip`)
-        echo ZIPFILES: ${ZIPFILES}
-
         for tempzip in "${ZIPFILES[@]}"
         do
             tempstem=`basename ${tempzip} .zip`
-            # tempzip=${tempstem}.zip
-
-            echo tempzip:  ${tempzip}
-            echo tempstem: ${tempstem}
-
             echo executing: unzip ${tempzip} -d ${tempFolder}/${tempstem}
             # unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
             # sleep 5
-
         done
         # Copy multiple local folders recursively to MinIO cloud storage.
         echo executing: mc-original cp --recursive ${tempFolder} ${dataRepository}
