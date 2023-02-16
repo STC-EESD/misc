@@ -5,27 +5,27 @@
 TARGETS=( \
     # Pre-packaged FGDB files (download directory) (English)
     "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/01/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/02/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/03/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/04/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/05/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/06/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/07/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/08/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/09/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/10/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/02/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/03/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/04/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/05/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/06/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/07/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/08/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/09/" \
+    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/10/" \
     "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/11/"
     )
 
 ### ~~~~~~~~~~ ###
-dataRepository=~/minio/standard/shared/randd-eesd/001-data-repository/001-acquired/NHN-GeoBase
-if [ `uname` != "Darwin" ]
-then
-    if [ ! -d "$dataRepository" ]; then
-        mkdir -p ${dataRepository}
-    fi
-    cp $0 ${dataRepository}
-fi
+# dataRepository=~/minio/standard/shared/randd-eesd/001-data-repository/001-acquired/NHN-GeoBase
+# if [ `uname` != "Darwin" ]
+# then
+#     if [ ! -d "$dataRepository" ]; then
+#         mkdir -p ${dataRepository}
+#     fi
+#     cp $0 ${dataRepository}
+# fi
 
 ### ~~~~~~~~~~ ###
 for temptarget in "${TARGETS[@]}"
@@ -62,9 +62,9 @@ echo
 echo; echo done; echo
 
 ### ~~~~~~~~~~ ###
-if [ `uname` != "Darwin" ]
-then
-    if compgen -G "std*" > /dev/null; then
-        cp std* ${dataRepository}
-    fi
-fi
+# if [ `uname` != "Darwin" ]
+# then
+#     if compgen -G "std*" > /dev/null; then
+#         cp std* ${dataRepository}
+#     fi
+# fi
