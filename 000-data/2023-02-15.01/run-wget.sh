@@ -4,16 +4,16 @@
 urlNHN=https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en
 
 FOLDERS=( \
-    # "01" \
-    # "02" \
-    # "03" \
-    # "04" \
-    # "05" \
-    # "06" \
-    # "07" \
-    # "08" \
+    "01" \
+    "02" \
+    "03" \
+    "04" \
+    "05" \
+    "06" \
+    "07" \
+    "08" \
     "09" \
-    # "10" \
+    "10" \
     "11"
     )
 
@@ -35,8 +35,8 @@ do
     tempTarget=${urlNHN}/${tempFolder}/
     echo;echo downloading: ${tempTarget}
     # for explanation of the following command, see: https://www.scivision.dev/wget-recursive-download
-    # wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
-    # sleep 2
+    wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
+    sleep 2
 
     if [ `uname` != "Darwin" ]
     then
