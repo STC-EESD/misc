@@ -49,11 +49,11 @@ do
             sleep 2
         done
         # Copy multiple local folders recursively to MinIO cloud storage.
-        echo executing: mc-original cp --recursive ${tempFolder} ${dataRepository}
-        mc-original cp --recursive ${tempFolder} ${dataRepository}
-        sleep 2
+        # echo executing: mc-original cp --recursive ${tempFolder} ${dataRepository}
+        # mc-original cp --recursive ${tempFolder} ${dataRepository}
+        # sleep 2
 
-        echo executing: rm -rf ${tempFolder}
+        # echo executing: rm -rf ${tempFolder}
         # rm -rf ${tempFolder}
         # sleep 5
     fi
