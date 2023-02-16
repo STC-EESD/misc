@@ -22,7 +22,7 @@ for tempzip in "${TARGETS[@]}"
 do
 
     echo;echo downloading: ${tempzip}
-    wget -m ${tempzip}
+    wget -r ${tempzip}
     sleep 5
 
     # if [ `uname` != "Darwin" ]
