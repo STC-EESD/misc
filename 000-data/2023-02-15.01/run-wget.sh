@@ -43,22 +43,22 @@ do
         ZIPFILES=`ls ${tempFolder}/*.zip`
         echo ZIPFILES: ${ZIPFILES}
 
-        # for tempzip in "${ZIPFILES[@]}"
-        # do
-        #     tempstem=`basename ${tempzip} .zip`
-        #     tempzip=${tempstem}.zip
+        for tempzip in "${ZIPFILES[@]}"
+        do
+            tempstem=`basename ${tempzip} .zip`
+            tempzip=${tempstem}.zip
 
-        #     echo unzipping: ${tempFolder}/${tempzip}
-        #     unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
-        #     sleep 5
+            echo executing: unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+            # unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+            # sleep 5
 
-        # done
-        # # Copy multiple local folders recursively to MinIO cloud storage.
-        # echo copying ${tempFolder} to ${dataRepository}
+        done
+        # Copy multiple local folders recursively to MinIO cloud storage.
+        echo executing: mc-original cp --recursive ${tempFolder} ${dataRepository}
         # mc-original cp --recursive ${tempFolder} ${dataRepository}
         # sleep 5
 
-        # echo deleting ${tempFolder}
+        echo executing: rm -rf ${tempFolder}
         # rm -rf ${tempFolder}
         # sleep 5
     fi
