@@ -1,59 +1,65 @@
 #!/bin/bash
 
 # https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977
+urlNHN=https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en
 
-TARGETS=( \
-    # Pre-packaged FGDB files (download directory) (English)
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/01/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/02/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/03/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/04/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/05/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/06/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/07/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/08/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/09/" \
-    # "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/10/" \
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/11/"
+FOLDERS=( \
+    # "01" \
+    # "02" \
+    # "03" \
+    # "04" \
+    # "05" \
+    # "06" \
+    # "07" \
+    # "08" \
+    "09" \
+    # "10" \
+    "11"
     )
 
 ### ~~~~~~~~~~ ###
 # dataRepository=~/minio/standard/shared/randd-eesd/001-data-repository/001-acquired/NHN-GeoBase
-# if [ `uname` != "Darwin" ]
-# then
-#     if [ ! -d "$dataRepository" ]; then
-#         mkdir -p ${dataRepository}
-#     fi
-#     cp $0 ${dataRepository}
-# fi
+dataRepository=~/minio/standard/shared/kenneth-chu/001-data-repository/001-acquired/NHN-GeoBase
+if [ `uname` != "Darwin" ]
+then
+    if [ ! -d "$dataRepository" ]; then
+        mkdir -p ${dataRepository}
+    fi
+    cp $0 ${dataRepository}
+fi
 
 ### ~~~~~~~~~~ ###
-for temptarget in "${TARGETS[@]}"
+for tempFolder in "${FOLDERS[@]}"
 do
 
-    echo;echo downloading: ${tempzip}
+    tempTarget=${urlNHN}/${tempFolder}
+    echo;echo downloading: ${tempTarget}
     # for explanation of the following command, see: https://www.scivision.dev/wget-recursive-download
-    wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${temptarget}
+    wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
     sleep 2
 
-    # if [ `uname` != "Darwin" ]
-    # then
-    #     tempstem=`basename ${tempzip} .zip`
-    #     tempzip=${tempstem}.zip
+    if [ `uname` != "Darwin" ]
+    then
+        ZIPFILES=`ls ${tempFolder}`
+        for tempzip in "${ZIPFILES[@]}"
+        do
+            tempstem=`basename ${tempzip} .zip`
+            tempzip=${tempstem}.zip
 
-    #     echo unzipping: ${tempzip}
-    #     unzip ${tempzip} -d ${tempstem}
-    #     sleep 5
+            echo unzipping: ${tempFolder}/${tempzip}
+            unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+            sleep 5
 
-    #     # Copy multiple local folders recursively to MinIO cloud storage.
-    #     echo copying ${tempstem} to ${dataRepository}
-    #     mc-original cp --recursive ${tempstem} ${dataRepository}
-    #     sleep 5
+        done
+        # Copy multiple local folders recursively to MinIO cloud storage.
+        echo copying ${tempFolder} to ${dataRepository}
+        mc-original cp --recursive ${tempFolder} ${dataRepository}
+        sleep 5
 
-    #     echo deleting ${tempstem}
-    #     rm -rf ${tempstem}
-    #     sleep 5
-    # fi
+        # echo deleting ${tempFolder}
+        # rm -rf ${tempFolder}
+        # sleep 5
+    fi
 
 done
 echo
@@ -62,9 +68,9 @@ echo
 echo; echo done; echo
 
 ### ~~~~~~~~~~ ###
-# if [ `uname` != "Darwin" ]
-# then
-#     if compgen -G "std*" > /dev/null; then
-#         cp std* ${dataRepository}
-#     fi
-# fi
+if [ `uname` != "Darwin" ]
+then
+    if compgen -G "std*" > /dev/null; then
+        cp std* ${dataRepository}
+    fi
+fi
