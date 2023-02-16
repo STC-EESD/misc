@@ -45,13 +45,13 @@ do
         do
             tempstem=`basename ${tempzip} .zip`
             echo executing: unzip ${tempzip} -d ${tempFolder}/${tempstem}
-            # unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
-            # sleep 5
+            unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+            sleep 5
         done
         # Copy multiple local folders recursively to MinIO cloud storage.
         echo executing: mc-original cp --recursive ${tempFolder} ${dataRepository}
-        # mc-original cp --recursive ${tempFolder} ${dataRepository}
-        # sleep 5
+        mc-original cp --recursive ${tempFolder} ${dataRepository}
+        sleep 5
 
         echo executing: rm -rf ${tempFolder}
         # rm -rf ${tempFolder}
