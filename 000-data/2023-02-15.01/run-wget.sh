@@ -4,7 +4,7 @@
 
 TARGETS=( \
     # Pre-packaged FGDB files (download directory) (English)
-    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/"
+    "ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/"
     )
 
 ### ~~~~~~~~~~ ###
@@ -22,7 +22,7 @@ for tempzip in "${TARGETS[@]}"
 do
 
     echo;echo downloading: ${tempzip}
-    wget -r ${tempzip}
+    wget -m ${tempzip}
     sleep 5
 
     # if [ `uname` != "Darwin" ]
