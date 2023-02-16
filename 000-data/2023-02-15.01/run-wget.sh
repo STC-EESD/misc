@@ -32,7 +32,7 @@ fi
 for tempFolder in "${FOLDERS[@]}"
 do
 
-    tempTarget=${urlNHN}/${tempFolder}
+    tempTarget=${urlNHN}/${tempFolder}/
     echo;echo downloading: ${tempTarget}
     # for explanation of the following command, see: https://www.scivision.dev/wget-recursive-download
     wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
@@ -40,21 +40,23 @@ do
 
     if [ `uname` != "Darwin" ]
     then
-        ZIPFILES=`ls ${tempFolder}`
-        for tempzip in "${ZIPFILES[@]}"
-        do
-            tempstem=`basename ${tempzip} .zip`
-            tempzip=${tempstem}.zip
+        ZIPFILES=`ls ${tempFolder}/*.zip`
+        echo ZIPFILES: ${ZIPFILES}
 
-            echo unzipping: ${tempFolder}/${tempzip}
-            unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
-            sleep 5
+        # for tempzip in "${ZIPFILES[@]}"
+        # do
+        #     tempstem=`basename ${tempzip} .zip`
+        #     tempzip=${tempstem}.zip
 
-        done
-        # Copy multiple local folders recursively to MinIO cloud storage.
-        echo copying ${tempFolder} to ${dataRepository}
-        mc-original cp --recursive ${tempFolder} ${dataRepository}
-        sleep 5
+        #     echo unzipping: ${tempFolder}/${tempzip}
+        #     unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+        #     sleep 5
+
+        # done
+        # # Copy multiple local folders recursively to MinIO cloud storage.
+        # echo copying ${tempFolder} to ${dataRepository}
+        # mc-original cp --recursive ${tempFolder} ${dataRepository}
+        # sleep 5
 
         # echo deleting ${tempFolder}
         # rm -rf ${tempFolder}
