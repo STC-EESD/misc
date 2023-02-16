@@ -35,8 +35,8 @@ do
     tempTarget=${urlNHN}/${tempFolder}/
     echo;echo downloading: ${tempTarget}
     # for explanation of the following command, see: https://www.scivision.dev/wget-recursive-download
-    wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
-    sleep 2
+    # wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${tempTarget}
+    # sleep 2
 
     if [ `uname` != "Darwin" ]
     then
@@ -46,9 +46,12 @@ do
         for tempzip in "${ZIPFILES[@]}"
         do
             tempstem=`basename ${tempzip} .zip`
-            tempzip=${tempstem}.zip
+            # tempzip=${tempstem}.zip
 
-            echo executing: unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
+            echo tempzip:  ${tempzip}
+            echo tempstem: ${tempstem}
+
+            echo executing: unzip ${tempzip} -d ${tempFolder}/${tempstem}
             # unzip ${tempFolder}/${tempzip} -d ${tempFolder}/${tempstem}
             # sleep 5
 
