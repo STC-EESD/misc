@@ -4,7 +4,17 @@
 
 TARGETS=( \
     # Pre-packaged FGDB files (download directory) (English)
-    "ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/"
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/01/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/02/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/03/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/04/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/05/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/06/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/07/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/08/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/09/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/10/" \
+    "https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/gdb_en/11/"
     )
 
 ### ~~~~~~~~~~ ###
@@ -18,12 +28,13 @@ then
 fi
 
 ### ~~~~~~~~~~ ###
-for tempzip in "${TARGETS[@]}"
+for temptarget in "${TARGETS[@]}"
 do
 
     echo;echo downloading: ${tempzip}
-    wget -m ${tempzip}
-    sleep 5
+    # for explanation of the following command, see: https://www.scivision.dev/wget-recursive-download
+    wget --recursive -np -nc -nH --cut-dirs=5 --random-wait --wait 1 -e robots=off ${temptarget}
+    sleep 2
 
     # if [ `uname` != "Darwin" ]
     # then
