@@ -1,0 +1,7 @@
+
+downloading: https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=E&FILETYPE=CSV&GEONO=005
+Archive:  98-401-X2021005_eng_CSV.zip
+  inflating: 98-401-X2021005_eng_CSV/98-401-X2021005_English_CSV_data.csv  
+  inflating: 98-401-X2021005_eng_CSV/98-401-X2021005_English_meta.txt  
+  inflating: 98-401-X2021005_eng_CSV/98-401-X2021005_Geo_starting_row.CSV  
+  inflating: 98-401-X2021005_eng_CSV/README_meta.txt  
